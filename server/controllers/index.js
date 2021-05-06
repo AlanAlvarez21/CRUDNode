@@ -1,4 +1,4 @@
 import * as user from './user';
-import * as catalogs from  './catalogs';
+import * as catalogs from './catalogs';
 
 export { catalogs, user };
