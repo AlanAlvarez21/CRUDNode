@@ -1,23 +1,38 @@
 import models from '../models';
 
-/** Example controller */
-const getUsers = async (req, res) => {
-  try {
-    const users = await models.User.findAll();
-    res.send(users);
-  } catch (error) {
-    res.status(500).send(error);
-  }
+const add = async (req, res) => {
+    try {
+        const { body } = req;
+        const response = await models.User.create(body);
+        res.send(response).status(201);
+
+    } catch (err) {
+    res.status(500).send(err.errors[0].message);    
+    }
 };
 
-/** Example controller */
-const getUserById = async (req, res) => {
-  try {
-    const users = await models.User.findByPk(req.params.userId);
-    res.send(users);
-  } catch (error) {
-    res.status(500).send(error);
-  }
+
+const list = async (req, res) => {
+    try {
+        const { body } = req;
+        const response = await models.User.findAll();
+        res.send(response).status(200);
+
+    } catch (err) {
+    res.status(500).send(err.errors[0].message);    
+    }
 };
 
-export { getUsers, getUserById };
+
+const byId = async (req, res) => {
+    try {
+        const pk = req.params.id;
+        const response = await models.User.findByPk(pk);
+        res.send(response).status(200);
+
+    } catch (err) {
+    res.status(500).send(err.errors[0].message);    
+    }
+};
+
+export { add, list, byId };
