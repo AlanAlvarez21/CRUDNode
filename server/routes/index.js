@@ -15,5 +15,7 @@ router.get('/request', catalogs.listRequestTypes);
 router.post('/users', user.add);
 router.get('/users', user.list);
 router.get('/users/:userId', user.byId);
+router.delete('/users/:userId', user.remove);
+router.put('/users/:userId', user.updateUser);
 
 export default router;
